@@ -7,10 +7,14 @@ export interface WeatherData {
         humidity: number
     }
     cod: number
-    sys: { country: string }
+    sys: { 
+        country: string 
+    }
     weather: { 
         description: string
         icon: string 
     } []
-    wind: {speed: number}
-}
+    wind: {
+        speed: number
+    }
+} 

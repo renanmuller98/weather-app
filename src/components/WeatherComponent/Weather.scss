@@ -5,14 +5,14 @@ section {
 
 .container {
     width: 100%;
-    border: 1px solid gray;
+    border: none;
     border-radius: 20px;
     padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffffb7;
+    background-color: #ffffffc0;
 
     h1 {
         text-transform: uppercase;
@@ -31,17 +31,19 @@ section {
             border: none;
             outline: none;
             padding-left: 10px;
+            background: #80808042
         }
 
         button {
             width: 15%;
             border-radius: 10px;
+            background: #80808042;
             outline: none;
             border: none;
             cursor: pointer;
 
             &:hover {
-                opacity: 0.9;
+                background: #8080807e;;
             }
         }
 
@@ -81,6 +83,10 @@ section {
         h3 {
             text-transform: capitalize;
             margin-bottom: 5px;
+        }
+
+        p {
+            text-align: center;
         }
     }
 

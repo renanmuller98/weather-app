@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import './Weather.scss'
 import { apiKey } from '../../api/api'
 import { WeatherData } from '../../types/weather'
@@ -6,7 +6,7 @@ import { WeatherData } from '../../types/weather'
 export const Weather = () => {
 
     const [cityName, setCityName] = useState('')
-    const [weatherInfo, setWeatherInfo] = useState<WeatherData>([])
+    const [weatherInfo, setWeatherInfo] = useState<WeatherData>()
     const [placeholder, setPlaceholder] = useState<string>('Digite a sua cidade')
 
     const getApi = () => {
@@ -40,10 +40,17 @@ export const Weather = () => {
     }
 
     const handleClick = () => {
-
+        
         getApi()
 
     }
+
+    const keyDown = (e: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            getApi()
+        }
+    }
+
 
     const formatDate = (timestamp: number) => {
         const date = new Date(timestamp);
@@ -75,13 +82,14 @@ export const Weather = () => {
                         placeholder={placeholder}
                         value={cityName}
                         onChange={handleChange}
+                        onKeyDown={keyDown}
                     />
                     <button type="button" onClick={handleClick}>
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
 
-                {weatherInfo.name ? (
+                {weatherInfo?.name ? (
                     <div className="city-info">
                         <h2>{weatherInfo.name}, {weatherInfo.sys.country}</h2>
                         <p>{formatDate(now)}</p>
@@ -106,7 +114,6 @@ export const Weather = () => {
 
                     </div>
                 ) : (<p></p>)}
-
 
             </div>
 
